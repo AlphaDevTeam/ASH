@@ -18,7 +18,7 @@ rule "alert-if-hot"
 		{
 		    if(tTemp === null){
 			    //val List<String> attachmentUrlList = newArrayList("https://kchanews.com/wp-content/uploads/2017/05/Temperature-Extremes.png")
-			    //sendMail("mihindu.gajaba@gmail.com", "[ALERT] - Temperature Sensor Alert @ " + now , "It doesn't matter what temperature the room is, it's always room temperature. but this time its bit too high , Temperature is @" + livingTemp.state)
+			    sendMail("mihindu.gajaba@gmail.com", "[ALERT] - Temperature Sensor Alert @ " + now , "It doesn't matter what temperature the room is, it's always room temperature. but this time its bit too high , Temperature is @" + livingTemp.state)
 			    tTemp = createTimer(now.plusMinutes(1)) [|
 				tTemp = null
 			    ]
@@ -38,6 +38,7 @@ rule "alert-if-sensor-status-changed"
 		publish("mosquitto", "/home/livingroom/temp", "0") // sends MQTT command
 		publish("mosquitto", "/home/livingroom/humid", "0") // sends MQTT command
 		publish("mosquitto", "/openhab/notification/alert", "Sensor Status Changed") // sends MQTT command
+		sendMail("mihindugajaba@gmail.com","[ALERT] - Sensor Status Changed to [" + connectionStatus.state + "] @ " + now , "Sensor Status Changed : " + connectionStatus.state)
 		if(tStatus === null){
 			//sendMail("mihindugajaba@gmail.com","[ALERT] - Sensor Status Changed to [" + connectionStatus.state + "] @ " + now , "Sensor Status Changed : " + connectionStatus.state)
 			tStatus = createTimer(now.plusMinutes(2)) [|
