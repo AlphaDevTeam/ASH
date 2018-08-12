@@ -5,7 +5,7 @@ String VT_Notify_Info                      { mqtt=">[mosquitto:/openhab/notifica
 String VT_Notify_Alert                     { mqtt=">[mosquitto:/openhab/notification/alert:state:*:default]" }
 String VT_Notify_Warn                      { mqtt=">[mosquitto:/openhab/notification/warn:state:*:default]" }
 String VT_Notify_Alarm                     { mqtt=">[mosquitto:/openhab/notification/alarm:state:*:default]" }
-String ASH_TEMP	                        { mqtt=">[mosquitto:/home/livingroom/temp:state:*:default]" }
+String ASH_TEMP	                           { mqtt=">[mosquitto:/home/livingroom/temp:state:*:default]" }
 
 var boolean temphigh = false
 var Timer tTemp = null
