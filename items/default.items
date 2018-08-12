@@ -1,0 +1,8 @@
+Group gAll
+
+Number livingTemp "Room Temperature [%.2f C]" <tempreture> (gAll) {mqtt="<[mosquitto:/home/livingroom/temp:state:default]"}
+Number livingHumid "Room Humidity [%.2f ]" <humidity> (gAll) {mqtt="<[mosquitto:/home/livingroom/humid:state:default]"}
+String connectionStatus "Sensor Status :[%s]" <status> (gAll) {mqtt="<[mosquitto:/home/livingroom/will:state:default]"}
+DateTime Date  "Current Date/Time [%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  { channel="ntp:ntp:demo:dateTime" }
+String serverDoorStatus "Door Status :[%s]" <door> (gAll) {mqtt="<[mosquitto:/home/serverRoom/door:state:default]"}
+

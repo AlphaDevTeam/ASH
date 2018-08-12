@@ -1,0 +1,14 @@
+sitemap default label="ASH-Alpha Smart Homes V1"
+{
+	Frame label="Living Room" {
+		Text item=livingTemp icon=temperature
+		Text item=livingHumid icon=humidity
+	}
+
+	Frame label="Status" {
+		Text item=connectionStatus icon=status
+		Text item=Date icon=ntp:ntp:demo  [ hostname="nl.pool.ntp.org", refreshInterval=60, refreshNtp=30 ]
+	}
+
+
+}

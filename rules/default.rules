@@ -1,0 +1,44 @@
+import java.util.List
+
+String VT_Notify_Trace                     { mqtt=">[mosquitto:/openhab/notification/trace:state:*:default]" }
+String VT_Notify_Info                      { mqtt=">[mosquitto:/openhab/notification/info:state:*:default]" }
+String VT_Notify_Alert                     { mqtt=">[mosquitto:/openhab/notification/alert:state:*:default]" }
+String VT_Notify_Warn                      { mqtt=">[mosquitto:/openhab/notification/warn:state:*:default]" }
+String VT_Notify_Alarm                     { mqtt=">[mosquitto:/openhab/notification/alarm:state:*:default]" }
+String ASH_TEMP	                        { mqtt=">[mosquitto:/home/livingroom/temp:state:*:default]" }
+
+var boolean temphigh = false
+var Timer tTemp = null
+var Timer tStatus = null
+rule "alert-if-hot"
+	when
+		Item livingTemp received update
+	then
+		if(livingTemp.state > 40)
+		{
+		    if(tTemp === null){
+			    //val List<String> attachmentUrlList = newArrayList("https://kchanews.com/wp-content/uploads/2017/05/Temperature-Extremes.png")
+			    //sendMail("mihindu.gajaba@gmail.com", "[ALERT] - Temperature Sensor Alert @ " + now , "It doesn't matter what temperature the room is, it's always room temperature. but this time its bit too high , Temperature is @" + livingTemp.state)
+			    tTemp = createTimer(now.plusMinutes(1)) [|
+				tTemp = null
+			    ]
+		    }
+
+		}
+		
+end
+
+rule "alert-if-sensor-status-changed"
+	when
+		Item connectionStatus received update
+	then
+		VT_Notify_Alert.postUpdate("Sensor Status Changed to " + connectionStatus.state)
+		ASH_TEMP.postUpdate("0")
+		logError("alert-if-sensor-status-changed","Sensor Status Changed to " + connectionStatus.state)
+		if(tStatus === null){
+			//sendMail("mihindugajaba@gmail.com","[ALERT] - Sensor Status Changed to [" + connectionStatus.state + "] @ " + now , "Sensor Status Changed : " + connectionStatus.state)
+			tStatus = createTimer(now.plusMinutes(2)) [|
+			tStatus = null
+			]
+		}
+end

@@ -1,0 +1,21 @@
+sitemap default label="ASH-Alpha Smart Homes V1"
+{
+	Frame label="Status" {
+                Text item=connectionStatus icon=status
+                Text item=Date icon=time
+		Text item=serverDoorStatus icon=door
+        }
+
+	Frame label="Server Room" {
+		Text item=livingTemp icon=temperature
+		Text item=livingHumid icon=humidity
+	}
+
+	Frame label="Temperature Chart" {
+		//Switch item=gWeather_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+		//Chart item=livingTemp period=h refresh=600 service="influxdb" visibility=[gWeather_Chart_Period==0]
+		//Chart item=livingTemp period=D refresh=900 service="influxdb" visibility=[gWeather_Chart_Period==1, gWeather_Chart_Period=="NULL"]
+		//Chart item=livingTemp period=W refresh=3600 service="influxdb" visibility=[gWeather_Chart_Period==2]
+		Chart item=livingTemp period=h refresh=10000 service="influxdb" 
+	}
+}
