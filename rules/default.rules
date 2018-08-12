@@ -1,11 +1,11 @@
 import java.util.List
 
-String VT_Notify_Trace                     { mqtt=">[mosquitto:/openhab/notification/trace:state:*:default]" }
-String VT_Notify_Info                      { mqtt=">[mosquitto:/openhab/notification/info:state:*:default]" }
-String VT_Notify_Alert                     { mqtt=">[mosquitto:/openhab/notification/alert:state:*:default]" }
-String VT_Notify_Warn                      { mqtt=">[mosquitto:/openhab/notification/warn:state:*:default]" }
-String VT_Notify_Alarm                     { mqtt=">[mosquitto:/openhab/notification/alarm:state:*:default]" }
-String ASH_TEMP	                           { mqtt=">[mosquitto:/home/livingroom/temp:state:*:default]" }
+//String VT_Notify_Trace                     { mqtt=">[mosquitto:/openhab/notification/trace:state:*:default]" }
+//String VT_Notify_Info                      { mqtt=">[mosquitto:/openhab/notification/info:state:*:default]" }
+//String VT_Notify_Alert                     { mqtt=">[mosquitto:/openhab/notification/alert:state:*:default]" }
+//String VT_Notify_Warn                      { mqtt=">[mosquitto:/openhab/notification/warn:state:*:default]" }
+//String VT_Notify_Alarm                     { mqtt=">[mosquitto:/openhab/notification/alarm:state:*:default]" }
+//String ASH_TEMP	                           { mqtt=">[mosquitto:/home/livingroom/temp:state:*:default]" }
 
 var boolean temphigh = false
 var Timer tTemp = null
@@ -33,7 +33,7 @@ rule "alert-if-sensor-status-changed"
 		Item connectionStatus received update
 	then
 		VT_Notify_Alert.postUpdate("Sensor Status Changed to " + connectionStatus.state)
-		ASH_TEMP.postUpdate("0")
+		//ASH_TEMP.postUpdate("0")
 		logError("alert-if-sensor-status-changed","Sensor Status Changed to " + connectionStatus.state)
 		if(tStatus === null){
 			//sendMail("mihindugajaba@gmail.com","[ALERT] - Sensor Status Changed to [" + connectionStatus.state + "] @ " + now , "Sensor Status Changed : " + connectionStatus.state)
