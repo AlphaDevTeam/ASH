@@ -1,6 +1,6 @@
 import java.util.List
 
-//String VT_Notify_Trace                     { mqtt=">[mosquitto:/openhab/notification/trace:state:*:default]" }
+String VT_Notify_Trace                     { mqtt=">[mosquitto:/openhab/notification/trace:state:*:default]" }
 //String VT_Notify_Info                      { mqtt=">[mosquitto:/openhab/notification/info:state:*:default]" }
 //String VT_Notify_Alert                     { mqtt=">[mosquitto:/openhab/notification/alert:state:*:default]" }
 //String VT_Notify_Warn                      { mqtt=">[mosquitto:/openhab/notification/warn:state:*:default]" }
