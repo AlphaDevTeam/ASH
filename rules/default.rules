@@ -35,6 +35,7 @@ rule "alert-if-sensor-status-changed"
 		//VT_Notify_Alert.postUpdate("Sensor Status Changed to " + connectionStatus.state)
 		//VT_ASH_TEMP.postUpdate("0")
 		logError("alert-if-sensor-status-changed","Sensor Status Changed to " + connectionStatus.state)
+		publish("mosquitto", "/home/livingroom/temp", "0" // sends MQTT command
 		if(tStatus === null){
 			//sendMail("mihindugajaba@gmail.com","[ALERT] - Sensor Status Changed to [" + connectionStatus.state + "] @ " + now , "Sensor Status Changed : " + connectionStatus.state)
 			tStatus = createTimer(now.plusMinutes(2)) [|
