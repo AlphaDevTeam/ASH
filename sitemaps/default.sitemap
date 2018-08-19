@@ -18,4 +18,8 @@ sitemap default label="ASH-Alpha Smart Homes V1"
 		//Chart item=livingTemp period=W refresh=3600 service="influxdb" visibility=[gWeather_Chart_Period==2]
 		Chart item=livingTemp period=h refresh=10000 service="influxdb" 
 	}
+	
+	Frame label="Switch Panel" {
+		Switch item=remoteSwitch1 label="MQTT Switch 1"	
+	}
 }
