@@ -6,5 +6,5 @@ String connectionStatus "Sensor Status :[%s]" <status> (gAll) {mqtt="<[mosquitto
 DateTime Date  "Current Date/Time [%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  { channel="ntp:ntp:demo:dateTime" }
 String serverDoorStatus "Door Status :[%s]" <door> (gAll) {mqtt="<[mosquitto:/home/serverRoom/door:state:default]"}
 
-Switch remoteSwitch1 "Switch 1" (gAll) {mqtt=">[mosquitto:/home/livingroom/sw1/command:command:ON:1],>[mosquitto:/home/livingroom/sw1/command:command:OFF:0],<[mosquitto:/home/livingroom/sw1/state:state:MAP(onoff.map)]",autoupdate="false"}
+Switch remoteSwitch1 "Switch 1" (gAll) {mqtt=">[mosquitto:/home/livingroom/sw1/command:command:ON:1],>[mosquitto:/home/livingroom/sw1/command:command:OFF:0],<[mosquitto:/home/livingroom/sw1/state:state:MAP(onoff.map)]",autoupdate="true"}
 
